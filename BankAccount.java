@@ -15,12 +15,16 @@ public BankAccount(String accountNumber) {
   }
   
   public void withdraw(double amount) {
-    balance -= amount;
-    transactionHistory.add("Withdrawal: -" + amount);
+    // checks if balance is below zero
+    if (balance < 0) {
+      balance -= amount;
+      transactionHistory.add("Withdrawal: -" + amount);
+    }
   }
   
   public void deposit(double amount) {
-    balance += amount;
+    // 1% interest on deposits
+    balance += amount*1.01;
     transactionHistory.add("Deposit: +" + amount);
   }
 }
